@@ -140,7 +140,7 @@
 				TargetAttributes = {
 					DA6B54041B9F15B1006E84AF = {
 						CreatedOnToolsVersion = 7.0;
-						DevelopmentTeam = QEHEGSDLMZ;
+						DevelopmentTeam = UZV93278Z5;
 					};
 				};
 			};
@@ -343,7 +343,25 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "XMPP-Messenger-iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "ONE.XMPP-Messenger-iOS";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-l\"xml2\"",
+					"-framework",
+					"\"CocoaAsyncSocket\"",
+					"-framework",
+					"\"CocoaLumberjack\"",
+					"-framework",
+					"\"FMDB\"",
+					"-framework",
+					"\"JSQMessagesViewController\"",
+					"-framework",
+					"\"JSQSystemSoundPlayer\"",
+					"-framework",
+					"\"XMPPFramework\"",
+					"-framework",
+					"\"xmpp_messenger_ios\"",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.BuzyBeezLtd.XMPPMessenger;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
@@ -359,7 +377,25 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "XMPP-Messenger-iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "ONE.XMPP-Messenger-iOS";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-l\"xml2\"",
+					"-framework",
+					"\"CocoaAsyncSocket\"",
+					"-framework",
+					"\"CocoaLumberjack\"",
+					"-framework",
+					"\"FMDB\"",
+					"-framework",
+					"\"JSQMessagesViewController\"",
+					"-framework",
+					"\"JSQSystemSoundPlayer\"",
+					"-framework",
+					"\"XMPPFramework\"",
+					"-framework",
+					"\"xmpp_messenger_ios\"",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.BuzyBeezLtd.XMPPMessenger;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";

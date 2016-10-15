@@ -63,7 +63,7 @@ class ChatViewController: JSQMessagesViewController, OneMessageDelegate, Contact
             		}
 			
 			self.inputToolbar!.contentView!.rightBarButtonItem!.enabled = false
-			self.navigationItem.setRightBarButtonItem(UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "addRecipient"), animated: true)
+			self.navigationItem.setRightBarButtonItem(UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: #selector(ChatViewController.addRecipient)), animated: true)
 			if firstTime {
 				firstTime = false
 				addRecipient()
@@ -122,10 +122,10 @@ class ChatViewController: JSQMessagesViewController, OneMessageDelegate, Contact
             		if !isComposing {
                 		self.isComposing = true
                 		OneMessage.sendIsComposingMessage((recipient?.jidStr)!, completionHandler: { (stream, message) -> Void in
-                    			self.timer = NSTimer.scheduledTimerWithTimeInterval(4.0, target: self, selector: "hideTypingIndicator", userInfo: nil, repeats: false)
+                    			self.timer = NSTimer.scheduledTimerWithTimeInterval(4.0, target: self, selector: #selector(ChatViewController.hideTypingIndicator), userInfo: nil, repeats: false)
                 		})
             		} else {
-                		self.timer = NSTimer.scheduledTimerWithTimeInterval(4.0, target: self, selector: "hideTypingIndicator", userInfo: nil, repeats: false)
+                		self.timer = NSTimer.scheduledTimerWithTimeInterval(4.0, target: self, selector: #selector(ChatViewController.hideTypingIndicator), userInfo: nil, repeats: false)
             		}
         	}
     	}
