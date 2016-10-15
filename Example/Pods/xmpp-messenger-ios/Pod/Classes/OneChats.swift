@@ -47,12 +47,12 @@ public class OneChats: NSObject, NSFetchedResultsControllerDelegate {
 			let predicate = NSPredicate(format: predicateFormat, predicateString)
 			request.predicate = predicate
 			request.entity = entityDescription
-
+			
 			do {
 				let results = try moc?.executeFetchRequest(request)
 				var _: XMPPMessageArchiving_Message_CoreDataObject
 				let archivedMessage = NSMutableArray()
-
+				
 				for message in results! {
 					var element: DDXMLElement!
 					do {
@@ -147,7 +147,7 @@ public class OneChats: NSObject, NSFetchedResultsControllerDelegate {
 			sharedInstance.chatListBare.removeObjectIdenticalTo(user.jidStr)
 		}
 	}
-
+	
 	func removeUserActivityFromCoreDataStorage(user user: XMPPUserCoreDataStorageObject) {
 		let moc = OneMessage.sharedInstance.xmppMessageStorage?.mainThreadManagedObjectContext
 		let entityDescription = NSEntityDescription.entityForName("XMPPMessageArchiving_Message_CoreDataObject", inManagedObjectContext: moc!)
@@ -157,7 +157,7 @@ public class OneChats: NSObject, NSFetchedResultsControllerDelegate {
 		let predicate = NSPredicate(format: predicateFormat, user.jidStr)
 		request.predicate = predicate
 		request.entity = entityDescription
-			
+		
 		do {
 			let results = try moc?.executeFetchRequest(request)
 			for message in results! {
@@ -177,7 +177,7 @@ public class OneChats: NSObject, NSFetchedResultsControllerDelegate {
 			let predicate = NSPredicate(format: predicateFormat, predicateString)
 			request.predicate = predicate
 			request.entity = entityDescription
-	
+			
 			do {
 				let results = try moc?.executeFetchRequest(request)
 				for message in results! {

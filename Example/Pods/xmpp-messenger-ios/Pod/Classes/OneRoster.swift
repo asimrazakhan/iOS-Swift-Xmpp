@@ -79,7 +79,7 @@ public class OneRoster: NSObject, NSFetchedResultsControllerDelegate {
 	public class func userFromRosterAtIndexPath(indexPath indexPath: NSIndexPath) -> XMPPUserCoreDataStorageObject {
 		return sharedInstance.fetchedResultsController()!.objectAtIndexPath(indexPath) as! XMPPUserCoreDataStorageObject
 	}
-
+	
 	public class func userFromRosterForJID(jid jid: String) -> XMPPUserCoreDataStorageObject? {
 		let userJID = XMPPJID.jidWithString(jid)
 		
@@ -91,7 +91,7 @@ public class OneRoster: NSObject, NSFetchedResultsControllerDelegate {
 	}
 	
 	public class func removeUserFromRosterAtIndexPath(indexPath indexPath: NSIndexPath) {
-		let user = userFromRosterAtIndexPath(indexPath: indexPath) 
+		let user = userFromRosterAtIndexPath(indexPath: indexPath)
 		sharedInstance.fetchedResultsControllerVar?.managedObjectContext.deleteObject(user)
 	}
 	

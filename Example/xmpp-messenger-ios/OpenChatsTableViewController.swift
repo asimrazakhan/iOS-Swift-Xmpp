@@ -10,6 +10,7 @@ import UIKit
 import xmpp_messenger_ios
 import XMPPFramework
 
+
 class OpenChatsTableViewController: UITableViewController, OneRosterDelegate {
 	
 	var chatList = NSArray()
@@ -66,16 +67,19 @@ class OpenChatsTableViewController: UITableViewController, OneRosterDelegate {
 	}
 	
 	override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-		let cell: UITableViewCell? = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
+		let cell: TableViewCell? = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as? TableViewCell
 		let user = OneChats.getChatsList().objectAtIndex(indexPath.row) as! XMPPUserCoreDataStorageObject
 		
-		cell!.textLabel!.text = user.displayName
-		cell!.detailTextLabel?.hidden = true
+		cell!.userName!.text = user.displayName
+//		cell!.detailTextLabel?.hidden = true
 		
 		OneChat.sharedInstance.configurePhotoForCell(cell!, user: user)
 		
-		cell?.imageView?.layer.cornerRadius = 24
-		cell?.imageView?.clipsToBounds = true
+        cell!.userImage!.layer.cornerRadius = cell!.userImage!.frame.size.width / 2
+		cell!.userImage!.clipsToBounds = true
+        
+        cell!.unreadMessages!.layer.cornerRadius = cell!.unreadMessages.frame.size.width/2;
+        cell!.unreadMessages!.clipsToBounds = true
 		
 		return cell!
 	}

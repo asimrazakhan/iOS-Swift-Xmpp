@@ -49,7 +49,7 @@ public class OneMessage: NSObject {
 	
 	// MARK: public methods
 	
-	public class func sendMessage(message: String, to recipient: String, completionHandler completion:OneChatMessageCompletionHandler) {
+	public class func sendMessage(message: String, to receiver: String, completionHandler completion:OneChatMessageCompletionHandler) {
 		let body = DDXMLElement.elementWithName("body") as! DDXMLElement
 		let messageID = OneChat.sharedInstance.xmppStream?.generateUUID()
 		
@@ -59,11 +59,8 @@ public class OneMessage: NSObject {
 		
 		completeMessage.addAttributeWithName("id", stringValue: messageID)
 		completeMessage.addAttributeWithName("type", stringValue: "chat")
-		completeMessage.addAttributeWithName("to", stringValue: recipient)
+		completeMessage.addAttributeWithName("to", stringValue: receiver)
 		completeMessage.addChild(body)
-		
-		let active = DDXMLElement.elementWithName("active", stringValue: "http://jabber.org/protocol/chatstates") as! DDXMLElement
-		completeMessage.addChild(active)
 		
 		sharedInstance.didSendMessageCompletionBlock = completion
 		OneChat.sharedInstance.xmppStream?.sendElement(completeMessage)
@@ -183,7 +180,10 @@ public class OneMessage: NSObject {
 extension OneMessage: XMPPStreamDelegate {
 	
 	public func xmppStream(sender: XMPPStream, didSendMessage message: XMPPMessage) {
-		OneMessage.sharedInstance.didSendMessageCompletionBlock!(stream: sender, message: message)
+		if let completion = OneMessage.sharedInstance.didSendMessageCompletionBlock {
+			completion(stream: sender, message: message)
+		}
+		//OneMessage.sharedInstance.didSendMessageCompletionBlock!(stream: sender, message: message)
 	}
 	
 	public func xmppStream(sender: XMPPStream, didReceiveMessage message: XMPPMessage) {
@@ -192,6 +192,7 @@ extension OneMessage: XMPPStreamDelegate {
 		if !OneChats.knownUserForJid(jidStr: user.jidStr) {
 			OneChats.addUserToChatList(jidStr: user.jidStr)
 		}
+		
 		if message.isChatMessageWithBody() {
 			OneMessage.sharedInstance.delegate?.oneStream(sender, didReceiveMessage: message, from: user)
 		} else {

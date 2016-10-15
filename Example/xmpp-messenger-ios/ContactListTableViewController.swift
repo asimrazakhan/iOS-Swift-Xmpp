@@ -30,7 +30,7 @@ class ContactListTableViewController: UITableViewController, OneRosterDelegate {
 		super.viewWillAppear(animated)
 		
 		if OneChat.sharedInstance.isConnected() {
-			navigationItem.title = "Select a recipient"
+			navigationItem.title = "Contacts"
 		}
 	}
 	
@@ -72,7 +72,7 @@ class ContactListTableViewController: UITableViewController, OneRosterDelegate {
 			
 			switch (tmpSection) {
 			case 0 :
-				return "Available"
+				return "Online"
 				
 			case 1 :
 				return "Away"
@@ -94,11 +94,11 @@ class ContactListTableViewController: UITableViewController, OneRosterDelegate {
 	}
 	
 	override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-		let cell: UITableViewCell? = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
+		let cell: TableViewCell? = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as? TableViewCell
 		let user = OneRoster.userFromRosterAtIndexPath(indexPath: indexPath)
 		
-		cell!.textLabel!.text = user.displayName;
-		cell!.detailTextLabel?.hidden = true
+		cell!.userName!.text = user.displayName
+//		cell!.detailTextLabel?.hidden = true
 		
 		if user.unreadMessages.intValue > 0 {
 			cell!.backgroundColor = .orangeColor()
@@ -107,6 +107,8 @@ class ContactListTableViewController: UITableViewController, OneRosterDelegate {
 		}
 		
 		OneChat.sharedInstance.configurePhotoForCell(cell!, user: user)
+        cell!.userImage!.layer.cornerRadius = cell!.userImage!.frame.size.width / 2
+        cell!.userImage!.clipsToBounds = true
 		
 		return cell!;
 	}
