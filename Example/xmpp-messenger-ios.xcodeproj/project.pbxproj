@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		140542D2733BAD55EE63BEFC /* Pods_XMPP_Messenger_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7D350A8A69EEF88ACCFDB13 /* Pods_XMPP_Messenger_iOS.framework */; };
 		A58DD73D1DB26B1F0065EA31 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58DD73C1DB26B1F0065EA31 /* TableViewCell.swift */; };
+		A5D0F2261DB2877D009B4EA4 /* xmpp_messenger_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5D0F2241DB2877D009B4EA4 /* xmpp_messenger_ios.framework */; };
+		A5D0F2271DB2877D009B4EA4 /* XMPPFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5D0F2251DB2877D009B4EA4 /* XMPPFramework.framework */; };
 		DA6B54091B9F15B1006E84AF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6B54081B9F15B1006E84AF /* AppDelegate.swift */; };
 		DA6B540E1B9F15B1006E84AF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA6B540C1B9F15B1006E84AF /* Main.storyboard */; };
 		DA6B54101B9F15B1006E84AF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA6B540F1B9F15B1006E84AF /* Assets.xcassets */; };
@@ -22,6 +24,8 @@
 /* Begin PBXFileReference section */
 		65A2D105601B77BBAA2EDEBB /* Pods-XMPP-Messenger-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XMPP-Messenger-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-XMPP-Messenger-iOS/Pods-XMPP-Messenger-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		A58DD73C1DB26B1F0065EA31 /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		A5D0F2241DB2877D009B4EA4 /* xmpp_messenger_ios.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = xmpp_messenger_ios.framework; path = "../../../../Library/Developer/Xcode/DerivedData/xmpp-messenger-ios-fondnngtmhjmlhayvrdjrfwdqfta/Build/Products/Debug-iphoneos/xmpp-messenger-ios/xmpp_messenger_ios.framework"; sourceTree = "<group>"; };
+		A5D0F2251DB2877D009B4EA4 /* XMPPFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XMPPFramework.framework; path = "Pods/../build/Debug-iphoneos/XMPPFramework/XMPPFramework.framework"; sourceTree = "<group>"; };
 		B7D350A8A69EEF88ACCFDB13 /* Pods_XMPP_Messenger_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_XMPP_Messenger_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA6B54051B9F15B1006E84AF /* XMPP-Messenger-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "XMPP-Messenger-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA6B54081B9F15B1006E84AF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -41,6 +45,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5D0F2261DB2877D009B4EA4 /* xmpp_messenger_ios.framework in Frameworks */,
+				A5D0F2271DB2877D009B4EA4 /* XMPPFramework.framework in Frameworks */,
 				DA6B54331B9F2D86006E84AF /* CoreData.framework in Frameworks */,
 				140542D2733BAD55EE63BEFC /* Pods_XMPP_Messenger_iOS.framework in Frameworks */,
 			);
@@ -61,6 +67,8 @@
 		849A627B95587B398E841CD1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A5D0F2241DB2877D009B4EA4 /* xmpp_messenger_ios.framework */,
+				A5D0F2251DB2877D009B4EA4 /* XMPPFramework.framework */,
 				DA6B54321B9F2D86006E84AF /* CoreData.framework */,
 				B7D350A8A69EEF88ACCFDB13 /* Pods_XMPP_Messenger_iOS.framework */,
 			);
@@ -147,7 +155,7 @@
 					};
 				};
 			};
-			buildConfigurationList = DA6B54001B9F15B1006E84AF /* Build configuration list for PBXProject "xmpp-messenger-ios" */;
+			buildConfigurationList = DA6B54001B9F15B1006E84AF /* Build configuration list for PBXProject "XMPP-Messenger-iOS" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -275,6 +283,8 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/**";
+				"FRAMEWORK_SEARCH_PATHS[arch=*]" = "";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -321,6 +331,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/**";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -345,8 +356,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/XMPPFramework",
+				);
 				INFOPLIST_FILE = "XMPP-Messenger-iOS/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LINK_WITH_STANDARD_LIBRARIES = YES;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-l\"xml2\"",
@@ -368,6 +385,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.BuzyBeezLtd.XMPPMessenger;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 			};
 			name = Debug;
@@ -379,8 +397,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/XMPPFramework",
+				);
 				INFOPLIST_FILE = "XMPP-Messenger-iOS/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LINK_WITH_STANDARD_LIBRARIES = YES;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-l\"xml2\"",
@@ -402,6 +426,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.BuzyBeezLtd.XMPPMessenger;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 			};
 			name = Release;
@@ -409,7 +434,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		DA6B54001B9F15B1006E84AF /* Build configuration list for PBXProject "xmpp-messenger-ios" */ = {
+		DA6B54001B9F15B1006E84AF /* Build configuration list for PBXProject "XMPP-Messenger-iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DA6B54151B9F15B1006E84AF /* Debug */,

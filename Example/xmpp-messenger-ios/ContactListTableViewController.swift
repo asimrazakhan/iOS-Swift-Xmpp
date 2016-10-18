@@ -97,7 +97,7 @@ class ContactListTableViewController: UITableViewController, OneRosterDelegate {
 		let cell: TableViewCell? = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as? TableViewCell
 		let user = OneRoster.userFromRosterAtIndexPath(indexPath: indexPath)
 		
-		cell!.userName!.text = user.displayName
+		cell!.userName.text = user.displayName
 //		cell!.detailTextLabel?.hidden = true
 		
 		if user.unreadMessages.intValue > 0 {
