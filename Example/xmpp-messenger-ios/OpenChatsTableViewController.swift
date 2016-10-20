@@ -11,7 +11,7 @@ import xmpp_messenger_ios
 import XMPPFramework
 
 
-class OpenChatsTableViewController: UITableViewController, OneRosterDelegate {
+class OpenChatsTableViewController: UITableViewController, OneRosterDelegate{
 	
 	var chatList = NSArray()
 	
@@ -73,31 +73,20 @@ class OpenChatsTableViewController: UITableViewController, OneRosterDelegate {
         print("Chat list controller + \(user)")
         
 		cell!.userName!.text = user.displayName
-//		cell!.detailTextLabel?.hidden = true
 		
 		OneChat.sharedInstance.configurePhotoForCell(cell!, user: user)
 		
         cell!.userImage!.layer.cornerRadius = cell!.userImage!.frame.size.width / 2
 		cell!.userImage!.clipsToBounds = true
         
+        cell!.unreadMessages!.text = String(user.unreadMessages)
+        
         switch user.unreadMessages {
         case 0:
-            cell!.unreadMessages!.text = "0"
+            cell!.unreadMessages!.hidden = true
         default:
-            cell!.unreadMessages!.text = "\(user.unreadMessages)"
+            cell!.unreadMessages!.text = String(user.unreadMessages)
         }
-        
-//        switch (tmpSection) {
-//        case 0 :
-//            return "Online"
-//            
-//        case 1 :
-//            return "Away"
-//            
-//        default :
-//            return "Offline"
-//            
-//        }
         
         cell!.unreadMessages!.layer.cornerRadius = cell!.unreadMessages.frame.size.width/2;
         cell!.unreadMessages!.clipsToBounds = true
@@ -106,16 +95,19 @@ class OpenChatsTableViewController: UITableViewController, OneRosterDelegate {
         case 0:
             cell!.statusLabel!.backgroundColor = UIColor.greenColor()
         case 1:
-            cell!.statusLabel!.backgroundColor = UIColor.grayColor()
+            cell!.statusLabel!.backgroundColor = UIColor.brownColor()
         default:
             cell!.statusLabel!.backgroundColor = UIColor.whiteColor()
         }
         
         cell!.statusLabel!.layer.cornerRadius = cell!.statusLabel.frame.size.width/2;
         cell!.statusLabel!.clipsToBounds = true
+        
 		
 		return cell!
 	}
+    
+    
 	
 	override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
 		if editingStyle == UITableViewCellEditingStyle.Delete {

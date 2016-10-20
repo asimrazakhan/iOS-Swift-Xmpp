@@ -155,7 +155,9 @@ class ChatViewController: JSQMessagesViewController, OneMessageDelegate, Contact
 	
 	override func collectionView(collectionView: JSQMessagesCollectionView!, messageDataForItemAtIndexPath indexPath: NSIndexPath!) -> JSQMessageData! {
 		let message: JSQMessage = self.messages[indexPath.item] as! JSQMessage
-		
+        
+        print("message \(message)")
+
 		return message
 	}
  
@@ -284,12 +286,14 @@ class ChatViewController: JSQMessagesViewController, OneMessageDelegate, Contact
 	
 	func oneStream(sender: XMPPStream, didReceiveMessage message: XMPPMessage, from user: XMPPUserCoreDataStorageObject) {
 		if message.isChatMessageWithBody() {
-			//let displayName = user.displayName
+//			let displayName = user.displayName
 			
 			JSQSystemSoundPlayer.jsq_playMessageReceivedSound()
-			
+            
+            let cell : TableViewCell?
 			if let msg: String = message.elementForName("body")?.stringValue() {
 				if let from: String = message.attributeForName("from")?.stringValue() {
+                    cell!.unreadMessages!.text = msg
 					let message = JSQMessage(senderId: from, senderDisplayName: from, date: NSDate(), text: msg)
 					messages.addObject(message)
 					

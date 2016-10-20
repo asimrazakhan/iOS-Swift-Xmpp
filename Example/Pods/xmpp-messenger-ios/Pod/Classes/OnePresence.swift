@@ -32,7 +32,7 @@ public class OnePresence: NSObject {
 		let presence = XMPPPresence()
 		let domain = OneChat.sharedInstance.xmppStream!.myJID.domain
 		
-		if domain == "desktop-j9lkhke" {
+		if domain == "sgi" {
 			let priority: DDXMLElement = DDXMLElement(name: "priority", stringValue: "24")
 			presence.addChild(priority)
 		}

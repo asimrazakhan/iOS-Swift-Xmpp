@@ -22,8 +22,8 @@ data: {
 
 <!--0 Data from the xmpp -->
 
-<XMPPUserCoreDataStorageObject: 0x7fd969f2dd20> (entity: XMPPUserCoreDataStorageObject; id: 0xd00000000008000c 
-<x-coredata://6CA7EDA5-6E32-47D0-AD08-C034082740FA/XMPPUserCoreDataStorageObject/p2> ; 
+<XMPPUserCoreDataStorageObject: 0x7fd969f2dd20> 
+(entity: XMPPUserCoreDataStorageObject; id: 0xd00000000008000c <x-coredata://6CA7EDA5-6E32-47D0-AD08-C034082740FA/XMPPUserCoreDataStorageObject/p2> ; 
 data: {
     ask = nil;
     displayName = "admin@sgi";

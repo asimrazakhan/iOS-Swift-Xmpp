@@ -60,7 +60,10 @@ public class OneMessage: NSObject {
 		completeMessage.addAttributeWithName("id", stringValue: messageID)
 		completeMessage.addAttributeWithName("type", stringValue: "chat")
 		completeMessage.addAttributeWithName("to", stringValue: receiver)
+        completeMessage.addAttributeWithName("time", stringValue: "time")
 		completeMessage.addChild(body)
+        
+        
 		
 		sharedInstance.didSendMessageCompletionBlock = completion
 		OneChat.sharedInstance.xmppStream?.sendElement(completeMessage)
@@ -187,6 +190,9 @@ extension OneMessage: XMPPStreamDelegate {
 	}
 	
 	public func xmppStream(sender: XMPPStream, didReceiveMessage message: XMPPMessage) {
+        
+        print("Recieved Message \(message)")
+        
 		let user = OneChat.sharedInstance.xmppRosterStorage.userForJID(message.from(), xmppStream: OneChat.sharedInstance.xmppStream, managedObjectContext: OneRoster.sharedInstance.managedObjectContext_roster())
 		
 		if !OneChats.knownUserForJid(jidStr: user.jidStr) {
