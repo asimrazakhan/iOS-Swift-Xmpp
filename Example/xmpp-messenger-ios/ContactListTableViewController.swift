@@ -96,8 +96,10 @@ class ContactListTableViewController: UITableViewController, OneRosterDelegate {
 	override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 		let cell: UITableViewCell? = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
 		let user = OneRoster.userFromRosterAtIndexPath(indexPath: indexPath)
-		print("Data from the xmpp =\(user)")
-		cell!.textLabel!.text = user.displayName
+        
+		print("Contact list controller \(user)")
+		
+        cell!.textLabel!.text = user.displayName
 //		cell!.detailTextLabel?.hidden = true
 		
 		if user.unreadMessages.intValue > 0 {

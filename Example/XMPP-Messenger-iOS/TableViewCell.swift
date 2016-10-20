@@ -16,6 +16,7 @@ class TableViewCell: UITableViewCell {
     @IBOutlet weak var userMessage: UILabel!
     @IBOutlet weak var messageTime: UILabel!
     @IBOutlet weak var unreadMessages: UILabel!
+    @IBOutlet weak var statusLabel: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()

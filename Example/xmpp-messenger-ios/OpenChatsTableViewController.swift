@@ -70,6 +70,8 @@ class OpenChatsTableViewController: UITableViewController, OneRosterDelegate {
 		let cell: TableViewCell? = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as? TableViewCell
 		let user = OneChats.getChatsList().objectAtIndex(indexPath.row) as! XMPPUserCoreDataStorageObject
 		
+        print("Chat list controller + \(user)")
+        
 		cell!.userName!.text = user.displayName
 //		cell!.detailTextLabel?.hidden = true
 		
@@ -78,8 +80,39 @@ class OpenChatsTableViewController: UITableViewController, OneRosterDelegate {
         cell!.userImage!.layer.cornerRadius = cell!.userImage!.frame.size.width / 2
 		cell!.userImage!.clipsToBounds = true
         
+        switch user.unreadMessages {
+        case 0:
+            cell!.unreadMessages!.text = "0"
+        default:
+            cell!.unreadMessages!.text = "\(user.unreadMessages)"
+        }
+        
+//        switch (tmpSection) {
+//        case 0 :
+//            return "Online"
+//            
+//        case 1 :
+//            return "Away"
+//            
+//        default :
+//            return "Offline"
+//            
+//        }
+        
         cell!.unreadMessages!.layer.cornerRadius = cell!.unreadMessages.frame.size.width/2;
         cell!.unreadMessages!.clipsToBounds = true
+        
+        switch user.sectionNum {
+        case 0:
+            cell!.statusLabel!.backgroundColor = UIColor.greenColor()
+        case 1:
+            cell!.statusLabel!.backgroundColor = UIColor.grayColor()
+        default:
+            cell!.statusLabel!.backgroundColor = UIColor.whiteColor()
+        }
+        
+        cell!.statusLabel!.layer.cornerRadius = cell!.statusLabel.frame.size.width/2;
+        cell!.statusLabel!.clipsToBounds = true
 		
 		return cell!
 	}
