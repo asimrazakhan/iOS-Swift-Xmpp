@@ -271,6 +271,7 @@ public class OneChat: NSObject {
 			streamDidConnectCompletionBlock = completion //was false
 			streamDidConnectCompletionBlock!(stream: self.xmppStream!, error: DDXMLElement(name: "Bad password"))
 		}
+        
 		try! xmppStream!.connectWithTimeout(XMPPStreamTimeoutNone)
 		
 		streamDidConnectCompletionBlock = completion

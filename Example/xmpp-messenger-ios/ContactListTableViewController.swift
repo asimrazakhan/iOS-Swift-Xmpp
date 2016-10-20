@@ -94,10 +94,10 @@ class ContactListTableViewController: UITableViewController, OneRosterDelegate {
 	}
 	
 	override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-		let cell: TableViewCell? = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as? TableViewCell
+		let cell: UITableViewCell? = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
 		let user = OneRoster.userFromRosterAtIndexPath(indexPath: indexPath)
-		
-		cell!.userName.text = user.displayName
+		print("Data from the xmpp =\(user)")
+		cell!.textLabel!.text = user.displayName
 //		cell!.detailTextLabel?.hidden = true
 		
 		if user.unreadMessages.intValue > 0 {
@@ -107,8 +107,8 @@ class ContactListTableViewController: UITableViewController, OneRosterDelegate {
 		}
 		
 		OneChat.sharedInstance.configurePhotoForCell(cell!, user: user)
-        cell!.userImage!.layer.cornerRadius = cell!.userImage!.frame.size.width / 2
-        cell!.userImage!.clipsToBounds = true
+//        cell!.imageView!.layer.cornerRadius = cell!.imageView!.frame.size.width / 2
+//        cell!.imageView!.clipsToBounds = true
 		
 		return cell!;
 	}

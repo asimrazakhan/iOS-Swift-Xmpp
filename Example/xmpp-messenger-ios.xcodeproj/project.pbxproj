@@ -152,10 +152,15 @@
 					DA6B54041B9F15B1006E84AF = {
 						CreatedOnToolsVersion = 7.0;
 						DevelopmentTeam = UZV93278Z5;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
-			buildConfigurationList = DA6B54001B9F15B1006E84AF /* Build configuration list for PBXProject "XMPP-Messenger-iOS" */;
+			buildConfigurationList = DA6B54001B9F15B1006E84AF /* Build configuration list for PBXProject "xmpp-messenger-ios" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -434,7 +439,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		DA6B54001B9F15B1006E84AF /* Build configuration list for PBXProject "XMPP-Messenger-iOS" */ = {
+		DA6B54001B9F15B1006E84AF /* Build configuration list for PBXProject "xmpp-messenger-ios" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DA6B54151B9F15B1006E84AF /* Debug */,

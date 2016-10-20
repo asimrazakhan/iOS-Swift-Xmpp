@@ -29,7 +29,7 @@ class OpenChatsTableViewController: UITableViewController, OneRosterDelegate {
 			}
 		}
 		
-		tableView.rowHeight = 50
+		//self.tableView.rowHeight = 50
 	}
 	
 	override func viewWillDisappear(animated: Bool) {
