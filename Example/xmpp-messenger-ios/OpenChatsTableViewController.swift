@@ -11,15 +11,18 @@ import xmpp_messenger_ios
 import XMPPFramework
 
 
-class OpenChatsTableViewController: UITableViewController, OneRosterDelegate{
+class OpenChatsTableViewController: UITableViewController, OneRosterDelegate {
 	
 	var chatList = NSArray()
-	
+//    var msg : String?
+    
 	// Mark: Life Cycle
 	
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
 		
+        
+        
 		OneRoster.sharedInstance.delegate = self
 		OneChat.sharedInstance.connect(username: kXMPP.myJID, password: kXMPP.myPassword) { (stream, error) -> Void in
 			if let _ = error {
@@ -73,6 +76,10 @@ class OpenChatsTableViewController: UITableViewController, OneRosterDelegate{
         print("Chat list controller + \(user)")
         
 		cell!.userName!.text = user.displayName
+        
+//        if let message = msg {
+//            cell!.userMessage!.text = message
+//        }
 		
 		OneChat.sharedInstance.configurePhotoForCell(cell!, user: user)
 		
@@ -107,6 +114,13 @@ class OpenChatsTableViewController: UITableViewController, OneRosterDelegate{
 		return cell!
 	}
     
+    // Mark: Chat message Delegates
+    
+//    func oneStream(sender: XMPPStream, didReceiveMessage message: XMPPMessage, from user: XMPPUserCoreDataStorageObject) {
+//         msg = (message.elementForName("body")?.stringValue())!
+//        
+//    }
+
     
 	
 	override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {

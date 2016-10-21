@@ -285,15 +285,15 @@ class ChatViewController: JSQMessagesViewController, OneMessageDelegate, Contact
 	// Mark: Chat message Delegates
 	
 	func oneStream(sender: XMPPStream, didReceiveMessage message: XMPPMessage, from user: XMPPUserCoreDataStorageObject) {
+        
 		if message.isChatMessageWithBody() {
 //			let displayName = user.displayName
 			
 			JSQSystemSoundPlayer.jsq_playMessageReceivedSound()
             
-            let cell : TableViewCell?
+            
 			if let msg: String = message.elementForName("body")?.stringValue() {
 				if let from: String = message.attributeForName("from")?.stringValue() {
-                    cell!.unreadMessages!.text = msg
 					let message = JSQMessage(senderId: from, senderDisplayName: from, date: NSDate(), text: msg)
 					messages.addObject(message)
 					

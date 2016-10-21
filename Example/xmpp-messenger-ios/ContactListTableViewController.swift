@@ -94,12 +94,14 @@ class ContactListTableViewController: UITableViewController, OneRosterDelegate {
 	}
 	
 	override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-		let cell: UITableViewCell? = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
+        
+		let cell: TableViewCell? = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as? TableViewCell
+        
 		let user = OneRoster.userFromRosterAtIndexPath(indexPath: indexPath)
         
 		print("Contact list controller \(user)")
 		
-        cell!.textLabel!.text = user.displayName
+        cell!.userName!.text = user.displayName
 //		cell!.detailTextLabel?.hidden = true
 		
 		if user.unreadMessages.intValue > 0 {
@@ -109,8 +111,8 @@ class ContactListTableViewController: UITableViewController, OneRosterDelegate {
 		}
 		
 		OneChat.sharedInstance.configurePhotoForCell(cell!, user: user)
-//        cell!.imageView!.layer.cornerRadius = cell!.imageView!.frame.size.width / 2
-//        cell!.imageView!.clipsToBounds = true
+        cell!.userImage!.layer.cornerRadius = cell!.userImage!.frame.size.width / 2
+        cell!.userImage!.clipsToBounds = true
 		
 		return cell!;
 	}
