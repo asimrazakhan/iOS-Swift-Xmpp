@@ -69,18 +69,33 @@ class ChatViewController: JSQMessagesViewController, OneMessageDelegate, Contact
 				addRecipient()
 			}
 		}
+        
+        self.scrollToBottomAnimated(true)
+        
+        // Add a background view to the table view
+        let backgroundImage = UIImage(named: "chatBackground")
+        let imageView = UIImageView(image: backgroundImage)
+        imageView.contentMode = .ScaleAspectFill
+        collectionView.backgroundView = imageView
+//        collectionView.footertableFooterView = UIView(frame: CGRectZero)
+        
 	}
 	
 	override func viewDidAppear(animated: Bool) {
 		super.viewDidAppear(animated)
 		
-		self.scrollToBottomAnimated(true)
+//		self.scrollToBottomAnimated(true)
 	}
 	
 	override func viewWillDisappear(animated: Bool) {
         userDetails?.removeFromSuperview()
     }
-	
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        collectionView.resignFirstResponder()
+    }
+    
+    
 	// Mark: Private methods
 	
 	func addRecipient() {
@@ -156,8 +171,12 @@ class ChatViewController: JSQMessagesViewController, OneMessageDelegate, Contact
 	override func collectionView(collectionView: JSQMessagesCollectionView!, messageDataForItemAtIndexPath indexPath: NSIndexPath!) -> JSQMessageData! {
 		let message: JSQMessage = self.messages[indexPath.item] as! JSQMessage
         
-        print("message \(message)")
-
+        print("messageDataForItem \(message)")
+        
+//        Message
+        
+        collectionView.backgroundColor = UIColor.clearColor()
+        
 		return message
 	}
  
@@ -166,7 +185,7 @@ class ChatViewController: JSQMessagesViewController, OneMessageDelegate, Contact
 		
 		let bubbleFactory = JSQMessagesBubbleImageFactory()
 		
-		let outgoingBubbleImageData = bubbleFactory.outgoingMessagesBubbleImageWithColor(UIColor.jsq_messageBubbleLightGrayColor())
+		let outgoingBubbleImageData = bubbleFactory.outgoingMessagesBubbleImageWithColor(UIColor.whiteColor())
 		let incomingBubbleImageData = bubbleFactory.incomingMessagesBubbleImageWithColor(UIColor.jsq_messageBubbleGreenColor())
 		
 		if message.senderId == self.senderId {
@@ -184,15 +203,16 @@ class ChatViewController: JSQMessagesViewController, OneMessageDelegate, Contact
 				let senderAvatar = JSQMessagesAvatarImageFactory.avatarImageWithImage(UIImage(data: photoData), diameter: 30)
 				return senderAvatar
 			} else {
-				let senderAvatar = JSQMessagesAvatarImageFactory.avatarImageWithUserInitials("SR", backgroundColor: UIColor(white: 0.85, alpha: 1.0), textColor: UIColor(white: 0.60, alpha: 1.0), font: UIFont(name: "Helvetica Neue", size: 14.0), diameter: 30)
-				return senderAvatar
+				let senderAvatar = JSQMessagesAvatarImageFactory.avatarImageWithUserInitials("DP", backgroundColor: UIColor(white: 0.85, alpha: 1.0), textColor: UIColor(white: 0.60, alpha: 1.0), font: UIFont(name: "Helvetica Neue", size: 14.0), diameter: 30)
+				
+                return senderAvatar
 			}
 		} else {
 			if let photoData = OneChat.sharedInstance.xmppvCardAvatarModule?.photoDataForJID(recipient!.jid!) {
 				let recipientAvatar = JSQMessagesAvatarImageFactory.avatarImageWithImage(UIImage(data: photoData), diameter: 30)
 				return recipientAvatar
 			} else {
-				let recipientAvatar = JSQMessagesAvatarImageFactory.avatarImageWithUserInitials("SR", backgroundColor: UIColor(white: 0.85, alpha: 1.0), textColor: UIColor(white: 0.60, alpha: 1.0), font: UIFont(name: "Helvetica Neue", size: 14.0)!, diameter: 30)
+				let recipientAvatar = JSQMessagesAvatarImageFactory.avatarImageWithUserInitials("DP", backgroundColor: UIColor(white: 0.85, alpha: 1.0), textColor: UIColor(white: 0.60, alpha: 1.0), font: UIFont(name: "Helvetica Neue", size: 14.0)!, diameter: 30)
 				return recipientAvatar
 			}
 		}

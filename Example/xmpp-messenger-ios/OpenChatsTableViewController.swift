@@ -32,7 +32,7 @@ class OpenChatsTableViewController: UITableViewController, OneRosterDelegate {
 			}
 		}
 		
-		//self.tableView.rowHeight = 50
+//		self.tableView.rowHeight = 50
 	}
 	
 	override func viewWillDisappear(animated: Bool) {
@@ -77,27 +77,27 @@ class OpenChatsTableViewController: UITableViewController, OneRosterDelegate {
         
 		cell!.userName!.text = user.displayName
         
-//        if let message = msg {
-//            cell!.userMessage!.text = message
-//        }
-		
 		OneChat.sharedInstance.configurePhotoForCell(cell!, user: user)
-		
-        cell!.userImage!.layer.cornerRadius = cell!.userImage!.frame.size.width / 2
-		cell!.userImage!.clipsToBounds = true
+        cell!.userImage!.image = cell!.imageView?.image
+        cell!.imageView!.image = nil
+        cell!.userImage!.layer.cornerRadius = cell!.userImage!.frame.size.width/2
+        cell!.userImage!.clipsToBounds = true
+        cell!.userImage!.contentMode = .ScaleAspectFill
         
-        cell!.unreadMessages!.text = String(user.unreadMessages)
+        cell!.unreadMessages!.layer.cornerRadius = cell!.unreadMessages!.frame.size.width/2;
+        cell!.unreadMessages!.clipsToBounds = true
+     
         
         switch user.unreadMessages {
-        case 0:
+        case 0 :
             cell!.unreadMessages!.hidden = true
         default:
-            cell!.unreadMessages!.text = String(user.unreadMessages)
+            cell!.unreadMessages!.text = "\(user.unreadMessages)"
         }
         
-        cell!.unreadMessages!.layer.cornerRadius = cell!.unreadMessages.frame.size.width/2;
-        cell!.unreadMessages!.clipsToBounds = true
         
+        cell!.statusLabel!.layer.cornerRadius = cell!.statusLabel!.frame.size.width/2;
+        cell!.statusLabel!.clipsToBounds = true
         switch user.sectionNum {
         case 0:
             cell!.statusLabel!.backgroundColor = UIColor.greenColor()
@@ -106,9 +106,6 @@ class OpenChatsTableViewController: UITableViewController, OneRosterDelegate {
         default:
             cell!.statusLabel!.backgroundColor = UIColor.whiteColor()
         }
-        
-        cell!.statusLabel!.layer.cornerRadius = cell!.statusLabel.frame.size.width/2;
-        cell!.statusLabel!.clipsToBounds = true
         
 		
 		return cell!

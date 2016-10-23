@@ -32,8 +32,9 @@ class ContactListTableViewController: UITableViewController, OneRosterDelegate {
 		if OneChat.sharedInstance.isConnected() {
 			navigationItem.title = "Contacts"
 		}
+        self.tableView.rowHeight = 75
 	}
-	
+    
 	override func viewWillDisappear(animated: Bool) {
 		super.viewWillDisappear(animated)
 		OneRoster.sharedInstance.delegate = nil
@@ -58,6 +59,7 @@ class ContactListTableViewController: UITableViewController, OneRosterDelegate {
 	}
 	
 	override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        
 		return OneRoster.buddyList.sections!.count
 	}
 	
@@ -65,8 +67,7 @@ class ContactListTableViewController: UITableViewController, OneRosterDelegate {
 	
 	override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
 		let sections: NSArray? = OneRoster.sharedInstance.fetchedResultsController()!.sections
-		
-		if section < sections!.count {
+        if section < sections!.count {
 			let sectionInfo: AnyObject = sections![section]
 			let tmpSection: Int = Int(sectionInfo.name)!
 			
@@ -96,13 +97,22 @@ class ContactListTableViewController: UITableViewController, OneRosterDelegate {
 	override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
 		let cell: TableViewCell? = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as? TableViewCell
-        
+
 		let user = OneRoster.userFromRosterAtIndexPath(indexPath: indexPath)
         
 		print("Contact list controller \(user)")
-		
         cell!.userName!.text = user.displayName
-//		cell!.detailTextLabel?.hidden = true
+        
+        cell!.statusLabel!.layer.cornerRadius = cell!.statusLabel!.frame.size.width/2;
+        cell!.statusLabel!.clipsToBounds = true
+        switch user.sectionNum {
+        case 0:
+            cell!.statusLabel!.backgroundColor = UIColor.greenColor()
+        case 1:
+            cell!.statusLabel!.backgroundColor = UIColor.brownColor()
+        default:
+            cell!.statusLabel!.backgroundColor = UIColor.whiteColor()
+        }
 		
 		if user.unreadMessages.intValue > 0 {
 			cell!.backgroundColor = .orangeColor()
@@ -111,9 +121,12 @@ class ContactListTableViewController: UITableViewController, OneRosterDelegate {
 		}
 		
 		OneChat.sharedInstance.configurePhotoForCell(cell!, user: user)
-        cell!.userImage!.layer.cornerRadius = cell!.userImage!.frame.size.width / 2
+        cell!.userImage!.image = cell!.imageView?.image
+        cell!.imageView!.image = nil
+        cell!.userImage!.layer.cornerRadius = cell!.userImage!.frame.size.width/2
         cell!.userImage!.clipsToBounds = true
-		
+        cell!.userImage!.contentMode = .ScaleAspectFill
+        
 		return cell!;
 	}
 	
