@@ -115,7 +115,7 @@
                     <navigationItem key="navigationItem" title="Chats" id="O8g-Ii-KGC">
                         <barButtonItem key="leftBarButtonItem" systemItem="add" id="ptH-kj-QRP">
                             <connections>
-                                <segue destination="7ag-84-eEI" kind="push" identifier="chat.to.add" id="Yg6-cr-arX"/>
+                                <segue destination="7ag-84-eEI" kind="push" id="jPm-0N-kww"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Settings" id="dXo-6x-d5Q">
@@ -249,8 +249,17 @@
                                                 <constraint firstAttribute="width" constant="58" id="KYC-fc-6sw"/>
                                             </constraints>
                                         </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rUa-Xm-XLe" userLabel="userName">
+                                            <rect key="frame" x="74" y="26" width="46" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="21" id="NCw-Z8-ttW"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vnt-gh-n7G">
-                                            <rect key="frame" x="300" y="31" width="12" height="12"/>
+                                            <rect key="frame" x="128" y="31" width="12" height="12"/>
                                             <color key="backgroundColor" red="0.0" green="0.83937823830000002" blue="0.037764482000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <accessibility key="accessibilityConfiguration" label="status"/>
                                             <constraints>
@@ -261,29 +270,22 @@
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rUa-Xm-XLe" userLabel="userName">
-                                            <rect key="frame" x="74" y="26" width="46" height="21"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="21" id="NCw-Z8-ttW"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="Vnt-gh-n7G" firstAttribute="top" secondItem="JY3-xi-Yqb" secondAttribute="top" constant="31" id="2AJ-cZ-Hgb"/>
                                         <constraint firstItem="rUa-Xm-XLe" firstAttribute="top" secondItem="JY3-xi-Yqb" secondAttribute="top" constant="26" id="Es1-IC-hKP"/>
-                                        <constraint firstAttribute="trailing" secondItem="Vnt-gh-n7G" secondAttribute="trailing" constant="8" id="f9e-Yz-lU9"/>
+                                        <constraint firstItem="Vnt-gh-n7G" firstAttribute="leading" secondItem="rUa-Xm-XLe" secondAttribute="trailing" constant="8" id="U1u-UL-8Yk"/>
                                         <constraint firstItem="Tcm-7J-Byk" firstAttribute="leading" secondItem="JY3-xi-Yqb" secondAttribute="leading" constant="8" id="kog-RS-eYB"/>
                                         <constraint firstItem="Tcm-7J-Byk" firstAttribute="top" secondItem="JY3-xi-Yqb" secondAttribute="top" constant="8" id="wcw-9B-ffD"/>
                                         <constraint firstItem="rUa-Xm-XLe" firstAttribute="leading" secondItem="Tcm-7J-Byk" secondAttribute="trailing" constant="8" id="zYA-NJ-qc2"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <gestureRecognizers/>
                                 <connections>
                                     <outlet property="statusLabel" destination="Vnt-gh-n7G" id="bI4-3d-3EV"/>
                                     <outlet property="userImage" destination="Tcm-7J-Byk" id="uUG-0d-rHK"/>
                                     <outlet property="userName" destination="rUa-Xm-XLe" id="aJh-XD-esW"/>
+                                    <outletCollection property="gestureRecognizers" destination="Fi0-rO-rjx" appends="YES" id="jCv-Nd-PWf"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -301,8 +303,31 @@
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CFQ-Nw-6GW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="Fi0-rO-rjx">
+                    <connections>
+                        <outlet property="delegate" destination="23h-S5-wUG" id="XXl-wG-IPf"/>
+                    </connections>
+                </pongPressGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1819" y="-798"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="6Gk-aV-Wyo">
+            <objects>
+                <viewController id="pM1-aT-ygA" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="aak-yX-60L"/>
+                        <viewControllerLayoutGuide type="bottom" id="xX4-6w-H98"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="XKb-HL-9Fq">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gqB-G7-Uht" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2312" y="-798"/>
         </scene>
         <!--Chat View Controller-->
         <scene sceneID="OSX-14-wxD">
@@ -461,7 +486,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Yg6-cr-arX"/>
+        <segue reference="VsY-sA-fwE"/>
         <segue reference="VOs-GQ-6gr"/>
     </inferredMetricsTieBreakers>
 </document>

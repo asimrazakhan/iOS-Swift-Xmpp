@@ -14,7 +14,7 @@ protocol ContactPickerDelegate{
 	func didSelectContact(recipient: XMPPUserCoreDataStorageObject)
 }
 
-class ContactListTableViewController: UITableViewController, OneRosterDelegate {
+class ContactListTableViewController: UITableViewController, OneRosterDelegate, UIGestureRecognizerDelegate {
 	
 	var delegate:ContactPickerDelegate?
 	
@@ -23,6 +23,12 @@ class ContactListTableViewController: UITableViewController, OneRosterDelegate {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
+        let longPressGesture:UILongPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(ContactListTableViewController.handleLongPress(_:)))
+        longPressGesture.minimumPressDuration = 1.0 // 1 second press
+        longPressGesture.allowableMovement = 15 // 15 points
+        longPressGesture.delegate = self
+        self.tableView.addGestureRecognizer(longPressGesture)
+        
 		OneRoster.sharedInstance.delegate = self
 	}
 	
@@ -39,10 +45,31 @@ class ContactListTableViewController: UITableViewController, OneRosterDelegate {
 		super.viewWillDisappear(animated)
 		OneRoster.sharedInstance.delegate = nil
 	}
+    
 	
 	func oneRosterContentChanged(controller: NSFetchedResultsController) {
 		tableView.reloadData()
 	}
+    
+    
+    // Mark: Gesture Handler
+    
+    func handleLongPress(longPressGesture:UILongPressGestureRecognizer) {
+        
+        let p = longPressGesture.locationInView(self.tableView)
+        let indexPath = self.tableView.indexPathForRowAtPoint(p)
+        
+        if indexPath == nil {
+            print("Long press on table view, not row.")
+        }
+        else if (longPressGesture.state == UIGestureRecognizerState.Began) {
+            print("Long press on row, at \(indexPath!.row)")
+            
+            let cell: TableViewCell = self.tableView.cellForRowAtIndexPath(indexPath!)! as! TableViewCell
+            cell.accessoryType = UITableViewCellAccessoryType.Checkmark
+        }
+        
+    }
 	
 	// Mark: UITableView Datasources
 	
