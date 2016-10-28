@@ -151,7 +151,7 @@
 				TargetAttributes = {
 					DA6B54041B9F15B1006E84AF = {
 						CreatedOnToolsVersion = 7.0;
-						DevelopmentTeam = UZV93278Z5;
+						DevelopmentTeam = 8GWSL85966;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -390,7 +390,7 @@
 					"-framework",
 					"\"xmpp_messenger_ios\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.BuzyBeezLtd.XMPPMessenger;
+				PRODUCT_BUNDLE_IDENTIFIER = com.BuzyBeezLtd.xmppMessenger;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
@@ -431,7 +431,7 @@
 					"-framework",
 					"\"xmpp_messenger_ios\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.BuzyBeezLtd.XMPPMessenger;
+				PRODUCT_BUNDLE_IDENTIFIER = com.BuzyBeezLtd.xmppMessenger;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
