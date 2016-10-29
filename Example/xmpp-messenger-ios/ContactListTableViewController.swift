@@ -56,6 +56,8 @@ class ContactListTableViewController: UITableViewController, OneRosterDelegate, 
     
     func handleLongPress(longPressGesture:UILongPressGestureRecognizer) {
         
+        
+        
         let p = longPressGesture.locationInView(self.tableView)
         let indexPath = self.tableView.indexPathForRowAtPoint(p)
         
@@ -119,6 +121,8 @@ class ContactListTableViewController: UITableViewController, OneRosterDelegate, 
 		
 		delegate?.didSelectContact(OneRoster.userFromRosterAtIndexPath(indexPath: indexPath))
 		close(self)
+        
+        print("didSelectRowAtIndexPAth")
 	}
 	
 	override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -160,7 +164,7 @@ class ContactListTableViewController: UITableViewController, OneRosterDelegate, 
 	// Mark: Segue support
 	
 	override func prepareForSegue(segue: UIStoryboardSegue?, sender: AnyObject?) {
-		if segue?.identifier != "One.HomeToSetting" {
+		if segue?.identifier != "contactsToChat" {
 			if let controller: ChatViewController? = segue?.destinationViewController as? ChatViewController {
 				if let cell: UITableViewCell? = sender as? UITableViewCell {
 					let user = OneRoster.userFromRosterAtIndexPath(indexPath: tableView.indexPathForCell(cell!)!)

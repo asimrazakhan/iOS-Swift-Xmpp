@@ -105,6 +105,7 @@ extension OneRoster: XMPPRosterDelegate {
 	public func xmppRoster(sender: XMPPRoster, didReceiveBuddyRequest presence:XMPPPresence) {
 		//was let user
 		_ = OneChat.sharedInstance.xmppRosterStorage.userForJID(presence.from(), xmppStream: OneChat.sharedInstance.xmppStream, managedObjectContext: managedObjectContext_roster())
+        print("didRecieveBuddyRequest")
 	}
 	
 	public func xmppRosterDidEndPopulating(sender: XMPPRoster?) {
