@@ -11,7 +11,7 @@ import xmpp_messenger_ios
 import JSQMessagesViewController
 import XMPPFramework
 
-class ChatViewController: JSQMessagesViewController, OneMessageDelegate, ContactPickerDelegate {
+class ChatViewController: JSQMessagesViewController, OneMessageDelegate {
 	
 	let appDelegate = UIApplication.sharedApplication().delegate as? AppDelegate
 	var messages = NSMutableArray()
@@ -36,10 +36,9 @@ class ChatViewController: JSQMessagesViewController, OneMessageDelegate, Contact
 	}
 	
 	override func viewWillAppear(animated: Bool) {
-		if let recipient = recipient {
+//		if let recipient = recipient {
 			self.navigationItem.rightBarButtonItems = []
-			
-                	navigationItem.title = recipient.displayName
+			navigationItem.title = recipient!.displayName
 
             		/* Mark: Adding LastActivity functionality to NavigationBar
             		OneLastActivity.sendLastActivityQueryToJID((recipient.jidStr), sender: OneChat.sharedInstance.xmppLastActivity) { (response, forJID, error) -> Void in
@@ -54,23 +53,34 @@ class ChatViewController: JSQMessagesViewController, OneMessageDelegate, Contact
             		} */
 			
 			dispatch_async(dispatch_get_main_queue(), { () -> Void in
-				self.messages = OneMessage.sharedInstance.loadArchivedMessagesFrom(jid: recipient.jidStr)
+				self.messages = OneMessage.sharedInstance.loadArchivedMessagesFrom(jid: self.recipient!.jidStr)
 				self.finishReceivingMessageAnimated(true)
 			})
-		} else {
-			if userDetails == nil {
-                        	navigationItem.title = "New message"
-            		}
-			
-			self.inputToolbar!.contentView!.rightBarButtonItem!.enabled = false
-			self.navigationItem.setRightBarButtonItem(UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: #selector(ChatViewController.addRecipient)), animated: true)
-			if firstTime {
-				firstTime = false
-				addRecipient()
-			}
-		}
         
-        self.scrollToBottomAnimated(true)
+//       self.recipient = recipient
+//                if userDetails == nil {
+//                    navigationItem.title = recipient!.displayName
+//                }
+        
+                if !OneChats.knownUserForJid(jidStr: recipient!.jidStr) {
+                    OneChats.addUserToChatList(jidStr: recipient!.jidStr)
+                } else {
+                    messages = OneMessage.sharedInstance.loadArchivedMessagesFrom(jid: recipient!.jidStr)
+                    finishReceivingMessageAnimated(true)
+                }
+        
+//		} else {
+//			if userDetails == nil {
+//                        	navigationItem.title = "New message"
+//            		}
+//			
+//			self.inputToolbar!.contentView!.rightBarButtonItem!.enabled = false
+//			self.navigationItem.setRightBarButtonItem(UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: #selector(ChatViewController.addRecipient)), animated: true)
+//			if firstTime {
+//				firstTime = false
+//				addRecipient()
+//			}
+//		}
         
         // Add a background view to the table view
         let backgroundImage = UIImage(named: "chatBackground")
@@ -78,6 +88,8 @@ class ChatViewController: JSQMessagesViewController, OneMessageDelegate, Contact
         imageView.contentMode = .ScaleAspectFill
         collectionView.backgroundView = imageView
 //        collectionView.footertableFooterView = UIView(frame: CGRectZero)
+        
+        self.scrollToBottomAnimated(true)
         
 	}
 	
@@ -91,35 +103,18 @@ class ChatViewController: JSQMessagesViewController, OneMessageDelegate, Contact
         userDetails?.removeFromSuperview()
     }
     
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        collectionView.resignFirstResponder()
-    }
-    
     
 	// Mark: Private methods
 	
-	func addRecipient() {
-		let navController = self.storyboard?.instantiateViewControllerWithIdentifier("contactListNav") as? UINavigationController
-		let contactController: ContactListTableViewController? = navController?.viewControllers[0] as? ContactListTableViewController
-		contactController?.delegate = self
-		
-		self.presentViewController(navController!, animated: true, completion: nil)
-	}
+//	func addRecipient() {
+//		let navController = self.storyboard?.instantiateViewControllerWithIdentifier("contactListNav") as? UINavigationController
+//		let contactController: ContactListTableViewController? = navController?.viewControllers[0] as? ContactListTableViewController
+//		contactController?.delegate = self
+//		
+//		self.presentViewController(navController!, animated: true, completion: nil)
+//	}
 	
-	func didSelectContact(recipient: XMPPUserCoreDataStorageObject) {
-		self.recipient = recipient
-		if userDetails == nil {
-            		navigationItem.title = recipient.displayName
-        	}
-		
-		if !OneChats.knownUserForJid(jidStr: recipient.jidStr) {
-			OneChats.addUserToChatList(jidStr: recipient.jidStr)
-		} else {
-			messages = OneMessage.sharedInstance.loadArchivedMessagesFrom(jid: recipient.jidStr)
-			finishReceivingMessageAnimated(true)
-		}
-	}
-	
+
 	// Mark: JSQMessagesViewController method overrides
 	
 	var isComposing = false

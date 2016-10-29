@@ -69,9 +69,9 @@ class SettingsViewController: UIViewController {
 	}
   }
   
-  @IBAction func close(sender: AnyObject) {
-    self.dismissViewControllerAnimated(true, completion: nil)
-  }
+//  @IBAction func close(sender: AnyObject) {
+//    self.dismissViewControllerAnimated(true, completion: nil)
+//  }
   
   // Mark: UITextField Delegates
   

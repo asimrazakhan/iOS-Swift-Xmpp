@@ -94,33 +94,34 @@ class ContactListTableViewController: UITableViewController, OneRosterDelegate, 
 	
 	// Mark: UITableView Delegates
 	
-	override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-		let sections: NSArray? = OneRoster.sharedInstance.fetchedResultsController()!.sections
-        if section < sections!.count {
-			let sectionInfo: AnyObject = sections![section]
-			let tmpSection: Int = Int(sectionInfo.name)!
-			
-			switch (tmpSection) {
-			case 0 :
-				return "Online"
-				
-			case 1 :
-				return "Away"
-				
-			default :
-				return "Offline"
-				
-			}
-		}
-		
-		return ""
-	}
+//	override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+//		let sections: NSArray? = OneRoster.sharedInstance.fetchedResultsController()!.sections
+//        if section < sections!.count {
+//			let sectionInfo: AnyObject = sections![section]
+//			let tmpSection: Int = Int(sectionInfo.name)!
+//			
+//			switch (tmpSection) {
+//			case 0 :
+//				return "Online"
+//				
+//			case 1 :
+//				return "Away"
+//				
+//			default :
+//				return "Offline"
+//				
+//			}
+//		}
+//		
+//		return ""
+//	}
 	
 	override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 		_ = OneRoster.userFromRosterAtIndexPath(indexPath: indexPath)
 		
 		delegate?.didSelectContact(OneRoster.userFromRosterAtIndexPath(indexPath: indexPath))
-		close(self)
+        
+//		close(self)
         
         print("didSelectRowAtIndexPAth")
 	}
@@ -162,23 +163,54 @@ class ContactListTableViewController: UITableViewController, OneRosterDelegate, 
 	}
 	
 	// Mark: Segue support
+//	
+//	override func prepareForSegue(segue: UIStoryboardSegue?, sender: AnyObject?) {
+//		if segue?.identifier != "one.to.settings" {
+//			if let controller: ChatViewController? = segue?.destinationViewController as? ChatViewController {
+//				if let cell: UITableViewCell? = sender as? UITableViewCell {
+//					let user = OneRoster.userFromRosterAtIndexPath(indexPath: tableView.indexPathForCell(cell!)!)
+//					controller!.recipient = user
+//				}
+//			}
+//		}
+//	}K
+    
 	
-	override func prepareForSegue(segue: UIStoryboardSegue?, sender: AnyObject?) {
-		if segue?.identifier != "contactsToChat" {
-			if let controller: ChatViewController? = segue?.destinationViewController as? ChatViewController {
-				if let cell: UITableViewCell? = sender as? UITableViewCell {
-					let user = OneRoster.userFromRosterAtIndexPath(indexPath: tableView.indexPathForCell(cell!)!)
-					controller!.recipient = user
-				}
-			}
-		}
-	}
-	
+    func didSelectContact(recipient: XMPPUserCoreDataStorageObject) {
+        func prepareForSegue(segue: UIStoryboardSegue?, sender: AnyObject?) {
+            if segue?.identifier != "chatToChats" {
+                if let controller: ChatViewController? = segue?.destinationViewController as? ChatViewController {
+                    if let cell: UITableViewCell? = sender as? UITableViewCell {
+                        let user = OneRoster.userFromRosterAtIndexPath(indexPath: tableView.indexPathForCell(cell!)!)
+                        controller!.title = user.displayName
+                        controller!.recipient = user
+                    }
+                }
+            }
+        }
+    }
+    
+    
+
+        
+//        self.recipient = recipient
+//        if userDetails == nil {
+//            navigationItem.title = recipient.displayName
+//        }
+//        
+//        if !OneChats.knownUserForJid(jidStr: recipient.jidStr) {
+//            OneChats.addUserToChatList(jidStr: recipient.jidStr)
+//        } else {
+//            messages = OneMessage.sharedInstance.loadArchivedMessagesFrom(jid: recipient.jidStr)
+//            finishReceivingMessageAnimated(true)
+//        }
+
+    
 	// Mark: IBAction
 	
-	@IBAction func close(sender: AnyObject) {
-		self.dismissViewControllerAnimated(true, completion: nil)
-	}
+//	@IBAction func close(sender: AnyObject) {
+//		self.dismissViewControllerAnimated(true, completion: nil)
+//	}
 	
 	// Mark: Memory Management
 	

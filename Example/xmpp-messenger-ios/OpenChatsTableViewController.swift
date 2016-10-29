@@ -11,10 +11,10 @@ import xmpp_messenger_ios
 import XMPPFramework
 
 
-class OpenChatsTableViewController: UITableViewController, OneRosterDelegate {
+class OpenChatsTableViewController: UITableViewController, OneRosterDelegate, OneMessageDelegate {
 	
 	var chatList = NSArray()
-//    var msg : String?
+    var msg : AnyObject
     
 	// Mark: Life Cycle
 	
@@ -23,7 +23,9 @@ class OpenChatsTableViewController: UITableViewController, OneRosterDelegate {
 		
         
         
-		OneRoster.sharedInstance.delegate = self
+//		OneRoster.sharedInstance.delegate = self
+        OneMessage.sharedInstance.delegate = self
+        
 		OneChat.sharedInstance.connect(username: kXMPP.myJID, password: kXMPP.myPassword) { (stream, error) -> Void in
             if let _ = error {
                 self.performSegueWithIdentifier("chatsToSignIn", sender: self)
@@ -113,10 +115,11 @@ class OpenChatsTableViewController: UITableViewController, OneRosterDelegate {
     
     // Mark: Chat message Delegates
     
-//    func oneStream(sender: XMPPStream, didReceiveMessage message: XMPPMessage, from user: XMPPUserCoreDataStorageObject) {
-//         msg = (message.elementForName("body")?.stringValue())!
-//        
-//    }
+    func oneStream(sender: XMPPStream, didReceiveMessage message: XMPPMessage, from user: XMPPUserCoreDataStorageObject) {
+         msg = (message.elementForName("body")?.stringValue())!
+        
+        
+    }
 
     
 	
@@ -139,19 +142,19 @@ class OpenChatsTableViewController: UITableViewController, OneRosterDelegate {
 	
 	// Mark: Segue support
 	
-//	override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
-//		if identifier == "chat.to.add" {
-//			if !OneChat.sharedInstance.isConnected() {
-//				let alert = UIAlertController(title: "Attention", message: "You have to be connected to start a chat", preferredStyle: UIAlertControllerStyle.Alert)
-//				alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
-//				
-//				self.presentViewController(alert, animated: true, completion: nil)
-//				
-//				return false
-//			}
-//		}
-//		return true
-//	}
+	override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
+		if identifier == "chatsToAdd" {
+			if !OneChat.sharedInstance.isConnected() {
+				let alert = UIAlertController(title: "Attention", message: "You have to be connected to add a friend", preferredStyle: UIAlertControllerStyle.Alert)
+				alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+				
+				self.presentViewController(alert, animated: true, completion: nil)
+				
+				return false
+			}
+		}
+		return true
+	}
 	
 	override func prepareForSegue(segue: UIStoryboardSegue?, sender: AnyObject?) {
 		if segue?.identifier == "chatsToChat" {
