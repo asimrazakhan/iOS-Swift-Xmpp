@@ -11,18 +11,14 @@ import xmpp_messenger_ios
 import XMPPFramework
 
 
-class OpenChatsTableViewController: UITableViewController, OneRosterDelegate, UITabBarDelegate {
+class OpenChatsTableViewController: UITableViewController, OneRosterDelegate {
     
     var chatList = NSArray()
-    //    var msg : String?
     
     // Mark: Life Cycle
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
-        
-        
         OneRoster.sharedInstance.delegate = self
         OneChat.sharedInstance.connect(username: kXMPP.myJID, password: kXMPP.myPassword) { (stream, error) -> Void in
             if let _ = error {
@@ -76,14 +72,12 @@ class OpenChatsTableViewController: UITableViewController, OneRosterDelegate, UI
         print("Chat list controller + \(user)")
         
         cell!.userName!.text = user.displayName
-        
         OneChat.sharedInstance.configurePhotoForCell(cell!, user: user)
         cell!.userImage!.image = cell!.imageView?.image
         cell!.imageView!.image = nil
         cell!.userImage!.layer.cornerRadius = cell!.userImage!.frame.size.width/2
         cell!.userImage!.clipsToBounds = true
         cell!.userImage!.contentMode = .ScaleAspectFill
-        
         cell!.unreadMessages!.layer.cornerRadius = cell!.unreadMessages!.frame.size.width/2;
         cell!.unreadMessages!.clipsToBounds = true
         
@@ -94,7 +88,6 @@ class OpenChatsTableViewController: UITableViewController, OneRosterDelegate, UI
         default:
             cell!.unreadMessages!.text = "\(user.unreadMessages)"
         }
-        
         
         cell!.statusLabel!.layer.cornerRadius = cell!.statusLabel!.frame.size.width/2;
         cell!.statusLabel!.clipsToBounds = true
@@ -107,21 +100,13 @@ class OpenChatsTableViewController: UITableViewController, OneRosterDelegate, UI
             cell!.statusLabel!.backgroundColor = UIColor.whiteColor()
         }
         
-        
         return cell!
     }
-    
-    // Mark: Chat message Delegates
-    
-    //    func oneStream(sender: XMPPStream, didReceiveMessage message: XMPPMessage, from user: XMPPUserCoreDataStorageObject) {
-    //         msg = (message.elementForName("body")?.stringValue())!
-    //
-    //    }
-    
     
     
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == UITableViewCellEditingStyle.Delete {
+            
             let refreshAlert = UIAlertController(title: "", message: "Are you sure you want to clear the entire message history? \n This cannot be undone.", preferredStyle: UIAlertControllerStyle.ActionSheet)
             
             refreshAlert.addAction(UIAlertAction(title: "Clear message history", style: .Destructive, handler: { (action: UIAlertAction!) in
@@ -144,7 +129,6 @@ class OpenChatsTableViewController: UITableViewController, OneRosterDelegate, UI
             if !OneChat.sharedInstance.isConnected() {
                 let alert = UIAlertController(title: "Attention", message: "You have to be connected add a friend", preferredStyle: UIAlertControllerStyle.Alert)
                 alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
-                
                 self.presentViewController(alert, animated: true, completion: nil)
                 
                 return false
@@ -153,8 +137,9 @@ class OpenChatsTableViewController: UITableViewController, OneRosterDelegate, UI
         return true
     }
     
+
     override func prepareForSegue(segue: UIStoryboardSegue?, sender: AnyObject?) {
-        if segue?.identifier == "chats.to.chat" {
+        if segue?.identifier == "chatsToChat" {
             if let controller = segue?.destinationViewController as? ChatViewController {
                 if let cell: UITableViewCell? = sender as? UITableViewCell {
                     let user = OneChats.getChatsList().objectAtIndex(tableView.indexPathForCell(cell!)!.row) as! XMPPUserCoreDataStorageObject

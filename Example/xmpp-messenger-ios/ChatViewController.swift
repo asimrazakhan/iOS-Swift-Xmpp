@@ -16,7 +16,7 @@ class ChatViewController: JSQMessagesViewController, OneMessageDelegate, Contact
     let appDelegate = UIApplication.sharedApplication().delegate as? AppDelegate
     var messages = NSMutableArray()
     var recipient: XMPPUserCoreDataStorageObject?
-    var firstTime = true
+//    var firstTime = true
     var userDetails = UIView?()
     
     // Mark: Life Cycle
@@ -63,12 +63,12 @@ class ChatViewController: JSQMessagesViewController, OneMessageDelegate, Contact
             }
             
         self.inputToolbar!.contentView!.rightBarButtonItem!.enabled = false
-        self.navigationItem.setRightBarButtonItem(UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: #selector(ChatViewController.addRecipient)), animated: true)
+//        self.navigationItem.setRightBarButtonItem(UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: #selector(ChatViewController.addRecipient)), animated: true)
             
-            if firstTime {
-                firstTime = false
-                addRecipient()
-            }
+//            if firstTime {
+//                firstTime = false
+//                addRecipient()
+//            }
         }
         
         self.scrollToBottomAnimated(true)
@@ -92,20 +92,16 @@ class ChatViewController: JSQMessagesViewController, OneMessageDelegate, Contact
         userDetails?.removeFromSuperview()
     }
     
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        collectionView.resignFirstResponder()
-    }
-    
     
     // Mark: Private methods
     
-    func addRecipient() {
-        let navController = self.storyboard?.instantiateViewControllerWithIdentifier("contactListNav") as? UINavigationController
-        let contactController: ContactListTableViewController? = navController?.viewControllers[0] as? ContactListTableViewController
-        contactController?.delegate = self
-        
-        self.presentViewController(navController!, animated: true, completion: nil)
-    }
+//    func addRecipient() {
+//        let navController = self.storyboard?.instantiateViewControllerWithIdentifier("contactListNav") as? UINavigationController
+//        let contactController: ContactListTableViewController? = navController?.viewControllers[0] as? ContactListTableViewController
+//        contactController?.delegate = self
+//        
+//        self.presentViewController(navController!, animated: true, completion: nil)
+//    }
     
     func didSelectContact(recipient: XMPPUserCoreDataStorageObject) {
         self.recipient = recipient
@@ -308,11 +304,9 @@ class ChatViewController: JSQMessagesViewController, OneMessageDelegate, Contact
     func oneStream(sender: XMPPStream, didReceiveMessage message: XMPPMessage, from user: XMPPUserCoreDataStorageObject) {
         
         if message.isChatMessageWithBody() {
-            //			let displayName = user.displayName
+            let displayName = user.displayName
             
             JSQSystemSoundPlayer.jsq_playMessageReceivedSound()
-            
-            
             if let msg: String = message.elementForName("body")?.stringValue() {
                 if let from: String = message.attributeForName("from")?.stringValue() {
                     let message = JSQMessage(senderId: from, senderDisplayName: from, date: NSDate(), text: msg)

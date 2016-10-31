@@ -271,9 +271,14 @@ public class OneChat: NSObject {
 			streamDidConnectCompletionBlock = completion //was false
 			streamDidConnectCompletionBlock!(stream: self.xmppStream!, error: DDXMLElement(name: "Bad password"))
 		}
+        do {
+            try xmppStream!.connectWithTimeout(XMPPStreamTimeoutNone)
+        }
+        catch let error {
+        let alert = UIAlertView(title: "Attention", message: "You are not connected to the internet", delegate: nil, cancelButtonTitle: "OK")
+            alert.show()
+        }
         
-		try! xmppStream!.connectWithTimeout(XMPPStreamTimeoutNone)
-		
 		streamDidConnectCompletionBlock = completion
 	}
 	

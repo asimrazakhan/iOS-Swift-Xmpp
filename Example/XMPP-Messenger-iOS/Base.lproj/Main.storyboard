@@ -175,20 +175,34 @@
                                     <outlet property="delegate" destination="wy9-uG-4Th" id="MUQ-eC-Cqb"/>
                                 </connections>
                             </textField>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yn9-2c-RdK">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="64" id="MU9-CY-kH3"/>
+                                </constraints>
+                                <color key="barTintColor" red="0.9463055641" green="0.68658723769999996" blue="0.12058806750000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <items>
+                                    <navigationItem title="Sign In" id="NMh-sH-3K4"/>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" red="0.058823529409999999" green="0.1647058824" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Yn9-2c-RdK" secondAttribute="trailing" id="0CX-nW-T8b"/>
                             <constraint firstAttribute="trailing" secondItem="Uq5-UO-ybZ" secondAttribute="trailing" constant="45" id="0q5-UT-Uv9"/>
                             <constraint firstAttribute="trailing" secondItem="aZV-G8-SVj" secondAttribute="trailing" constant="45" id="60k-bI-ynk"/>
+                            <constraint firstItem="Yn9-2c-RdK" firstAttribute="top" secondItem="0Ur-z2-7Vd" secondAttribute="top" id="Atz-q3-Pjt"/>
                             <constraint firstItem="aZV-G8-SVj" firstAttribute="leading" secondItem="0Ur-z2-7Vd" secondAttribute="leading" constant="46" id="fjW-fn-Tij"/>
                             <constraint firstItem="hZd-NM-wEg" firstAttribute="centerX" secondItem="0Ur-z2-7Vd" secondAttribute="centerX" id="geM-MN-Wz1"/>
                             <constraint firstItem="hZd-NM-wEg" firstAttribute="top" secondItem="Uq5-UO-ybZ" secondAttribute="bottom" constant="28" id="l0K-8U-kAi"/>
+                            <constraint firstItem="Yn9-2c-RdK" firstAttribute="leading" secondItem="0Ur-z2-7Vd" secondAttribute="leading" id="mfz-PD-gXP"/>
                             <constraint firstItem="Uq5-UO-ybZ" firstAttribute="top" secondItem="aZV-G8-SVj" secondAttribute="bottom" constant="24" id="mlV-PR-oMu"/>
                             <constraint firstItem="Uq5-UO-ybZ" firstAttribute="leading" secondItem="0Ur-z2-7Vd" secondAttribute="leading" constant="46" id="r9T-YE-RJi"/>
                             <constraint firstItem="aZV-G8-SVj" firstAttribute="top" secondItem="WB3-LQ-bi0" secondAttribute="bottom" constant="93" id="u9f-if-m7e"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" systemItem="more" id="mwG-g9-90N"/>
                     <navigationItem key="navigationItem" title="Sign In" id="ZBt-bp-sVj"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -199,7 +213,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9GK-1D-OjC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1313" y="1296"/>
+            <point key="canvasLocation" x="781" y="1342"/>
         </scene>
         <!--Contact List-->
         <scene sceneID="0yf-Wj-XEY">
@@ -270,7 +284,7 @@
                             <outlet property="delegate" destination="23h-S5-wUG" id="AB0-vU-hcs"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Contacts" id="bFP-YK-ZsQ"/>
+                    <navigationItem key="navigationItem" title="Contacts" id="TWz-gS-hoJ"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CFQ-Nw-6GW" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="Fi0-rO-rjx">
@@ -279,7 +293,7 @@
                     </connections>
                 </pongPressGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1313" y="-81"/>
+            <point key="canvasLocation" x="1313" y="-147"/>
         </scene>
         <!--Add User-->
         <scene sceneID="6Gk-aV-Wyo">
@@ -334,7 +348,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gqB-G7-Uht" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1841" y="-81"/>
+            <point key="canvasLocation" x="1841" y="-147"/>
         </scene>
         <!--Chat-->
         <scene sceneID="UWz-uN-uUk">
@@ -348,6 +362,31 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Kri-mc-dcN">
+                                <rect key="frame" x="20" y="481" width="232" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="nDi-XV-v7e"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="WDI-NE-EKY" id="qfk-YE-MUq"/>
+                                </connections>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7AI-3K-p2f">
+                                <rect key="frame" x="264" y="481" width="36" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="Syx-by-nKC"/>
+                                    <constraint firstAttribute="width" constant="36" id="WJv-LX-Lk6"/>
+                                </constraints>
+                                <color key="tintColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Send"/>
+                                <state key="disabled" image="send"/>
+                                <state key="selected" image="send"/>
+                                <connections>
+                                    <action selector="sendMessage:" destination="WDI-NE-EKY" eventType="touchUpInside" id="iz9-5t-APG"/>
+                                </connections>
+                            </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="T76-y9-wDl" userLabel="Message Table View">
                                 <rect key="frame" x="0.0" y="64" width="320" height="409"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -382,31 +421,6 @@
                                     <outlet property="delegate" destination="WDI-NE-EKY" id="OA5-Kh-nqt"/>
                                 </connections>
                             </tableView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Kri-mc-dcN">
-                                <rect key="frame" x="20" y="481" width="232" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="nDi-XV-v7e"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <outlet property="delegate" destination="WDI-NE-EKY" id="qfk-YE-MUq"/>
-                                </connections>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7AI-3K-p2f">
-                                <rect key="frame" x="264" y="481" width="36" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="Syx-by-nKC"/>
-                                    <constraint firstAttribute="width" constant="36" id="WJv-LX-Lk6"/>
-                                </constraints>
-                                <color key="tintColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Send"/>
-                                <state key="disabled" image="send"/>
-                                <state key="selected" image="send"/>
-                                <connections>
-                                    <action selector="sendMessage:" destination="WDI-NE-EKY" eventType="touchUpInside" id="iz9-5t-APG"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.058823529409999999" green="0.1647058824" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -450,8 +464,8 @@
                     </tabBar>
                     <connections>
                         <segue destination="HUh-b9-2XT" kind="relationship" relationship="viewControllers" id="o5z-jb-I4B"/>
-                        <segue destination="0gg-Sq-mDv" kind="relationship" relationship="viewControllers" id="eSv-IF-PGj"/>
-                        <segue destination="ThH-TD-iuY" kind="relationship" relationship="viewControllers" id="hjT-iS-xpL"/>
+                        <segue destination="Bf0-t7-rXq" kind="relationship" relationship="viewControllers" id="esP-Qo-NLR"/>
+                        <segue destination="wy9-uG-4Th" kind="relationship" relationship="viewControllers" id="dOc-se-lMY"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QxD-h2-LxK" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -479,55 +493,34 @@
             </objects>
             <point key="canvasLocation" x="781" y="594"/>
         </scene>
-        <!--Contacts Navigation-->
-        <scene sceneID="wr5-gr-XrI">
-            <objects>
-                <navigationController title="Contacts Navigation" automaticallyAdjustsScrollViewInsets="NO" id="0gg-Sq-mDv" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="contacts" id="p4u-KD-vyS"/>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="x0u-o1-m1h">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <color key="barTintColor" red="0.9463055641" green="0.68658723769999996" blue="0.12058806750000001" alpha="1" colorSpace="calibratedRGB"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="23h-S5-wUG" kind="relationship" relationship="rootViewController" id="E1D-3v-9tC"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Tju-pk-bBy" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="781" y="-81"/>
-        </scene>
         <!--Navigation Controller-->
-        <scene sceneID="sDp-CY-Fiu">
+        <scene sceneID="jeE-DH-OFG">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ThH-TD-iuY" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="more" id="Leq-Pc-0B2"/>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Bf0-t7-rXq" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" systemItem="contacts" id="P3j-6V-ecE"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="dVm-g9-E3Q">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="mdr-5y-Qt0">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="barTintColor" red="0.9463055641" green="0.68658723769999996" blue="0.12058806750000001" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="wy9-uG-4Th" kind="relationship" relationship="rootViewController" id="bmy-hU-mwt"/>
+                        <segue destination="23h-S5-wUG" kind="relationship" relationship="rootViewController" id="lzH-fS-5Lb"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Ghp-c1-sCM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sP1-Yd-bhO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="781" y="1296"/>
+            <point key="canvasLocation" x="781" y="-147"/>
         </scene>
     </scenes>
     <resources>
         <image name="send" width="38" height="31"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="rAR-IG-pww"/>
+        <segue reference="kH2-ox-ty8"/>
         <segue reference="UVH-VV-69n"/>
-        <segue reference="bmy-hU-mwt"/>
-        <segue reference="Gfy-Wl-e6u"/>
     </inferredMetricsTieBreakers>
 </document>
