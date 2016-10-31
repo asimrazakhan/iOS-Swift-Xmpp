@@ -115,12 +115,12 @@
                     <navigationItem key="navigationItem" title="Chats" id="9ki-9G-8xN">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="S4V-8B-VcN">
                             <connections>
-                                <segue destination="pM1-aT-ygA" kind="push" identifier="chatsToAdd" id="4Yn-lT-Lc4"/>
+                                <segue destination="pM1-aT-ygA" kind="push" identifier="chatsToAddFriend" id="4Yn-lT-Lc4"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <segue destination="wy9-uG-4Th" kind="push" identifier="chatsToSignIn" id="nXb-cV-gH3"/>
+                        <segue destination="wy9-uG-4Th" kind="push" identifier="chatsToSignIn" id="kH2-ox-ty8"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UWh-1b-q1R" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -192,14 +192,14 @@
                     <navigationItem key="navigationItem" title="Sign In" id="ZBt-bp-sVj"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="passwordTextField" destination="Uq5-UO-ybZ" id="JcQ-cR-DgE"/>
-                        <outlet property="usernameTextField" destination="aZV-G8-SVj" id="t2A-Aq-UaC"/>
-                        <outlet property="validateButton" destination="hZd-NM-wEg" id="Efo-Jv-8vq"/>
+                        <outlet property="passwordTextField" destination="Uq5-UO-ybZ" id="lkp-EV-aeK"/>
+                        <outlet property="usernameTextField" destination="aZV-G8-SVj" id="Xif-Qm-HzY"/>
+                        <outlet property="validateButton" destination="hZd-NM-wEg" id="9MC-kl-PLA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9GK-1D-OjC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1313" y="1312"/>
+            <point key="canvasLocation" x="1313" y="1296"/>
         </scene>
         <!--Contact List-->
         <scene sceneID="0yf-Wj-XEY">
@@ -348,25 +348,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7AI-3K-p2f">
-                                <rect key="frame" x="264" y="481" width="36" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="Syx-by-nKC"/>
-                                    <constraint firstAttribute="width" constant="36" id="WJv-LX-Lk6"/>
-                                </constraints>
-                                <state key="normal" title="Send">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="sendMessage:" destination="WDI-NE-EKY" eventType="touchUpInside" id="iz9-5t-APG"/>
-                                </connections>
-                            </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="T76-y9-wDl" userLabel="Message Table View">
                                 <rect key="frame" x="0.0" y="64" width="320" height="409"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MessageCellIdentifier" textLabel="kwE-OH-Dhp" detailTextLabel="ud7-4O-dNM" rowHeight="75" style="IBUITableViewCellStyleSubtitle" id="jMM-Se-8Hu">
-                                        <rect key="frame" x="0.0" y="22" width="320" height="75"/>
+                                        <rect key="frame" x="0.0" y="86" width="320" height="75"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jMM-Se-8Hu" id="P0h-x1-JX8">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="74.5"/>
@@ -406,8 +393,22 @@
                                     <outlet property="delegate" destination="WDI-NE-EKY" id="qfk-YE-MUq"/>
                                 </connections>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7AI-3K-p2f">
+                                <rect key="frame" x="264" y="481" width="36" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="Syx-by-nKC"/>
+                                    <constraint firstAttribute="width" constant="36" id="WJv-LX-Lk6"/>
+                                </constraints>
+                                <color key="tintColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Send"/>
+                                <state key="disabled" image="send"/>
+                                <state key="selected" image="send"/>
+                                <connections>
+                                    <action selector="sendMessage:" destination="WDI-NE-EKY" eventType="touchUpInside" id="iz9-5t-APG"/>
+                                </connections>
+                            </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.058823529409999999" green="0.1647058824" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="T76-y9-wDl" firstAttribute="top" secondItem="1KI-OB-XtK" secondAttribute="bottom" id="0KT-10-664"/>
                             <constraint firstAttribute="trailing" secondItem="T76-y9-wDl" secondAttribute="trailing" id="4hp-BZ-RP2"/>
@@ -441,26 +442,26 @@
             <objects>
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="bZe-zm-4mc" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" id="OpB-Ow-BzF"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="BFy-OT-zbJ">
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="barTintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="HUh-b9-2XT" kind="relationship" relationship="viewControllers" id="o5z-jb-I4B"/>
                         <segue destination="0gg-Sq-mDv" kind="relationship" relationship="viewControllers" id="eSv-IF-PGj"/>
-                        <segue destination="hGV-8O-O0m" kind="relationship" relationship="viewControllers" id="MVV-Ps-gFx"/>
+                        <segue destination="ThH-TD-iuY" kind="relationship" relationship="viewControllers" id="hjT-iS-xpL"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QxD-h2-LxK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="287" y="594"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Chat Navigation-->
         <scene sceneID="dJP-Lo-Nmm">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="HUh-b9-2XT" sceneMemberID="viewController">
+                <navigationController title="Chat Navigation" automaticallyAdjustsScrollViewInsets="NO" id="HUh-b9-2XT" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" systemItem="mostViewed" id="UIy-UE-e8E"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="VuD-bP-3WM">
@@ -478,10 +479,10 @@
             </objects>
             <point key="canvasLocation" x="781" y="594"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Contacts Navigation-->
         <scene sceneID="wr5-gr-XrI">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="0gg-Sq-mDv" sceneMemberID="viewController">
+                <navigationController title="Contacts Navigation" automaticallyAdjustsScrollViewInsets="NO" id="0gg-Sq-mDv" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" systemItem="contacts" id="p4u-KD-vyS"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="x0u-o1-m1h">
@@ -500,30 +501,33 @@
             <point key="canvasLocation" x="781" y="-81"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="JXw-PZ-CLt">
+        <scene sceneID="sDp-CY-Fiu">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="hGV-8O-O0m" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="more" id="E6T-e5-Sb7"/>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ThH-TD-iuY" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" systemItem="more" id="Leq-Pc-0B2"/>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" id="MoK-7T-g9Z"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="1XG-i0-0as">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="dVm-g9-E3Q">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="barTintColor" red="0.9463055641" green="0.68658723769999996" blue="0.12058806750000001" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="wy9-uG-4Th" kind="relationship" relationship="rootViewController" id="C00-UK-nJI"/>
+                        <segue destination="wy9-uG-4Th" kind="relationship" relationship="rootViewController" id="bmy-hU-mwt"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="qtk-4W-GH5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ghp-c1-sCM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="781" y="1312"/>
+            <point key="canvasLocation" x="781" y="1296"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="send" width="38" height="31"/>
+    </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="rAR-IG-pww"/>
-        <segue reference="nXb-cV-gH3"/>
-        <segue reference="aoX-Nh-b1e"/>
+        <segue reference="UVH-VV-69n"/>
+        <segue reference="bmy-hU-mwt"/>
+        <segue reference="Gfy-Wl-e6u"/>
     </inferredMetricsTieBreakers>
 </document>
