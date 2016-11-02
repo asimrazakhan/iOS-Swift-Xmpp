@@ -66,7 +66,7 @@ class OpenChatsTableViewController: UITableViewController, OneRosterDelegate {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell: TableViewCell? = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as? TableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as? TableViewCell
         let user = OneChats.getChatsList().objectAtIndex(indexPath.row) as! XMPPUserCoreDataStorageObject
         
         print("Chat list controller + \(user)")
@@ -148,7 +148,7 @@ class OpenChatsTableViewController: UITableViewController, OneRosterDelegate {
             }
         }
     }
-
+    
     
     // Mark: Memory Management
     

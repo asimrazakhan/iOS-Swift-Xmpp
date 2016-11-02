@@ -16,13 +16,14 @@ class ChatViewController: JSQMessagesViewController, OneMessageDelegate, Contact
     let appDelegate = UIApplication.sharedApplication().delegate as? AppDelegate
     var messages = NSMutableArray()
     var recipient: XMPPUserCoreDataStorageObject?
-//    var firstTime = true
     var userDetails = UIView?()
     
     // Mark: Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print("\(recipient)")
         
         OneMessage.sharedInstance.delegate = self
         
@@ -85,7 +86,7 @@ class ChatViewController: JSQMessagesViewController, OneMessageDelegate, Contact
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        //		self.scrollToBottomAnimated(true)
+//        self.scrollToBottomAnimated(true)
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -304,7 +305,7 @@ class ChatViewController: JSQMessagesViewController, OneMessageDelegate, Contact
     func oneStream(sender: XMPPStream, didReceiveMessage message: XMPPMessage, from user: XMPPUserCoreDataStorageObject) {
         
         if message.isChatMessageWithBody() {
-            let displayName = user.displayName
+//            let displayName = user.displayName
             
             JSQSystemSoundPlayer.jsq_playMessageReceivedSound()
             if let msg: String = message.elementForName("body")?.stringValue() {

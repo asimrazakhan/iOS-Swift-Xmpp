@@ -147,11 +147,11 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0700;
-				ORGANIZATIONNAME = ProcessOne;
+				ORGANIZATIONNAME = BuzyBeez;
 				TargetAttributes = {
 					DA6B54041B9F15B1006E84AF = {
 						CreatedOnToolsVersion = 7.0;
-						DevelopmentTeam = 8GWSL85966;
+						DevelopmentTeam = UZV93278Z5;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -366,10 +366,10 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/build/Debug-iphoneos/XMPPFramework",
+					"$(SRCROOT)/**",
 				);
 				INFOPLIST_FILE = "XMPP-Messenger-iOS/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LINK_WITH_STANDARD_LIBRARIES = YES;
 				OTHER_LDFLAGS = (
@@ -390,7 +390,7 @@
 					"-framework",
 					"\"xmpp_messenger_ios\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.BuzyBeezLtd.xmppMessenger;
+				PRODUCT_BUNDLE_IDENTIFIER = com.BuzyBeezLtd.xmppMessengerSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
@@ -407,10 +407,10 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/build/Debug-iphoneos/XMPPFramework",
+					"$(SRCROOT)/**",
 				);
 				INFOPLIST_FILE = "XMPP-Messenger-iOS/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LINK_WITH_STANDARD_LIBRARIES = YES;
 				OTHER_LDFLAGS = (
@@ -431,7 +431,7 @@
 					"-framework",
 					"\"xmpp_messenger_ios\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.BuzyBeezLtd.xmppMessenger;
+				PRODUCT_BUNDLE_IDENTIFIER = com.BuzyBeezLtd.xmppMessengerSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;

@@ -20,14 +20,12 @@ class SettingsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         let tap = UITapGestureRecognizer(target: self, action: #selector(SettingsViewController.DismissKeyboard))
         view.addGestureRecognizer(tap)
-        
         if OneChat.sharedInstance.isConnected() {
             usernameTextField.hidden = true
             passwordTextField.hidden = true
-            validateButton.setTitle("Disconnect", forState: UIControlState.Normal)
+            validateButton.setTitle("Logout", forState: UIControlState.Normal)
         } else {
             if NSUserDefaults.standardUserDefaults().stringForKey(kXMPP.myJID) != "kXMPPmyJID" {
                 usernameTextField.text = NSUserDefaults.standardUserDefaults().stringForKey(kXMPP.myJID)
@@ -53,7 +51,7 @@ class SettingsViewController: UIViewController {
             OneChat.sharedInstance.disconnect()
             usernameTextField.hidden = false
             passwordTextField.hidden = false
-            validateButton.setTitle("Validate", forState: UIControlState.Normal)
+            validateButton.setTitle("Login", forState: UIControlState.Normal)
         } else {
             OneChat.sharedInstance.connect(username: self.usernameTextField.text!, password: self.passwordTextField.text!) { (stream, error) -> Void in
                 if let _ = error {
@@ -69,9 +67,9 @@ class SettingsViewController: UIViewController {
         }
     }
     
-    @IBAction func close(sender: AnyObject) {
-        self.dismissViewControllerAnimated(true, completion: nil)
-    }
+//    @IBAction func close(sender: AnyObject) {
+//        self.dismissViewControllerAnimated(true, completion: nil)
+//    }
     
     // Mark: UITextField Delegates
     
