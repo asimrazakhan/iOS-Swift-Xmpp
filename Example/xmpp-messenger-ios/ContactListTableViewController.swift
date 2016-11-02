@@ -117,11 +117,10 @@ class ContactListTableViewController: UITableViewController, OneRosterDelegate, 
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-//        let user = OneRoster.userFromRosterAtIndexPath(indexPath: indexPath)
+        delegate?.didSelectContact(OneRoster.userFromRosterAtIndexPath(indexPath: indexPath))
 //        print("User First\(user)")
         
-//        self.performSegueWithIdentifier("contactsToChat", sender: self)
-//        close(self)
+//      self.performSegueWithIdentifier("contactsToChat", sender: self)
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -164,13 +163,13 @@ class ContactListTableViewController: UITableViewController, OneRosterDelegate, 
 
 
     override func prepareForSegue(segue: UIStoryboardSegue?, sender: AnyObject?) {
-        if segue?.identifier != "contactsToChat" {
-            if let _: ChatViewController? = segue?.destinationViewController as? ChatViewController {
+        if segue?.identifier == "contactsToChat" {
+            if let controller : ChatViewController? = segue?.destinationViewController as? ChatViewController {
                 if let cell: UITableViewCell? = sender as? UITableViewCell {
                     let user = OneRoster.userFromRosterAtIndexPath(indexPath: tableView.indexPathForCell(cell!)!)
-                    delegate?.didSelectContact(user)
+//                    delegate?.didSelectContact(user)
                     print("User form Prepare\(user)")
-//                    controller!.recipient = user
+                    controller!.recipient = user
                 }
                 
             }
@@ -193,10 +192,11 @@ class ContactListTableViewController: UITableViewController, OneRosterDelegate, 
 //        }
 //    }
     
+    //
     // Mark: Dismiss current ViewController
-//    func close(sender: AnyObject) -> Void {
-//        self.dismissViewControllerAnimated(true, completion: nil)
-//    }
+    func close(sender: AnyObject) -> Void {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
     
     // Mark: Memory Management
     

@@ -528,8 +528,8 @@
         <image name="send" width="38" height="31"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="jjq-gh-oIK"/>
         <segue reference="rAR-IG-pww"/>
-        <segue reference="UVH-VV-69n"/>
+        <segue reference="jjq-gh-oIK"/>
+        <segue reference="aoX-Nh-b1e"/>
     </inferredMetricsTieBreakers>
 </document>
